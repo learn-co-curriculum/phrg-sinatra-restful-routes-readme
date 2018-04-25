@@ -5,3 +5,5 @@ tags:
 languages:
   - ruby
   
+
+parent_template: git@github.com:learn-co-curriculum/sinatra-restful-routes-readme.git
