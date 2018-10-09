@@ -152,5 +152,8 @@ Again, this delete form needs the hidden input field:
 </form>
 ```
 
+## Does this need an update?
+Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
+
 <p class='util--hide'>View <a href='https://learn.co/lessons/sinatra-restful-routes-readme'>Sinatra RESTful Routes</a> on Learn.co and start learning to code for free.</p>
 <p data-visibility='hidden'>PHRG RESTful Routes</p>
