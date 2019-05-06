@@ -27,16 +27,15 @@ Browsers behave a little strange as it relates to `PUT`, `PATCH` and `DELETE` re
 Let's take a blog website as an example. You'd want to have a controller action to create a new post (new route), to display one post (show route), to display all posts (index route), to delete a post (delete route), and a page to edit a post (edit route).
 
 | HTTP VERB | ROUTE              | Action        | Used For                                               |
-|---      |---                 |---            |---                                                     |
-| GET     | '/posts'           | index action  | index page to display all posts                        |
-| GET     | '/posts/new'       | new action    | displays create post form                              |
-| POST    | '/posts'           | create action | creates one blog post                                  |
-| GET     | '/posts/:id'       | show action   | displays one blog post based on ID in the url          |
-| GET     | '/posts/:id/edit'  | edit action   | displays edit form based on ID in the url              |
-| PATCH   | '/posts/:id'       | edit action   | _edits_ an existing blog post based on ID in the url   |
-| GET     | '/posts/:id/update'| update action | displays update form blog post based on ID in the url  |
-| PUT     | '/posts/:id'       | update action | _replaces_ an existing blog post based on ID in the url|
-| DELETE  | '/posts/:id/delete'| delete action | deletes one blog post based on ID in the url           |
+|---        |---                 |---            |---                                                     |
+| GET       | '/posts'           | index action  | index page to display all posts                        |
+| GET       | '/posts/new'       | new action    | displays create post form                              |
+| POST      | '/posts'           | create action | creates one blog post                                  |
+| GET       | '/posts/:id'       | show action   | displays one blog post based on ID in the url          |
+| GET       | '/posts/:id/edit'  | edit action   | displays edit form based on ID in the url              |
+| PATCH     | '/posts/:id'       | update action | _edits_ an existing blog post based on ID in the url   |
+| PUT       | '/posts/:id'       | update action | _replaces_ an existing blog post based on ID in the url|
+| DELETE    | '/posts/:id/delete'| delete action | deletes one blog post based on ID in the url           |
 
 ## The Routes
 
@@ -59,7 +58,7 @@ get '/posts/new' do
   erb :new
 end
 
-post '/posts' do
+post '/posts' do # create action
   @post = Post.create(:title => params[:title], :content => params[:content])
   redirect to "/posts/#{@post.id}"
 end
@@ -82,12 +81,12 @@ In order to display a single post, we need a `show action`. This controller acti
 ### Edit Action
 
 ```ruby
-get '/posts/:id/edit' do  #load edit form
-    @post = Post.find_by_id(params[:id])
-    erb :edit
-  end
+get '/posts/:id/edit' do # load edit form
+  @post = Post.find_by_id(params[:id])
+  erb :edit
+end
 
-patch '/posts/:id' do #edit action
+patch '/posts/:id' do # update action
   @post = Post.find_by_id(params[:id])
   @post.title = params[:title]
   @post.content = params[:content]
@@ -117,7 +116,7 @@ The second line above `<input type="hidden" name="_method" value="patch">` is wh
 
 #### Using `PATCH`, `PUT` and `DELETE` requests with `Rack::MethodOverride` Middleware
 
-The hidden input field shown above uses `Rack::MethodOverride`, which is part of [Sinatra middleware](https://github.com/rack/rack/blob/master/lib/rack/method_override.rb). 
+The hidden input field shown above uses `Rack::MethodOverride`, which is part of [Sinatra middleware](https://github.com/rack/rack/blob/master/lib/rack/method_override.rb).
 
 In order to use this middleware, and therefore use `PATCH`, `PUT`, and `DELETE` requests, you *must* tell your app to use the middleware.
 
@@ -134,7 +133,7 @@ This middleware will then run for every request sent by our application. It will
 ### Delete Action
 
 ```ruby
-delete '/posts/:id/delete' do #delete action
+delete '/posts/:id/delete' do # delete action
   @post = Post.find_by_id(params[:id])
   @post.delete
   redirect to '/posts'
@@ -153,7 +152,5 @@ Again, this delete form needs the hidden input field:
 ```
 
 ## Does this need an update?
-Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
 
-<p class='util--hide'>View <a href='https://learn.co/lessons/sinatra-restful-routes-readme'>Sinatra RESTful Routes</a> on Learn.co and start learning to code for free.</p>
-<p data-visibility='hidden'>PHRG RESTful Routes</p>
+Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-sinatra-restful-routes-readme/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
